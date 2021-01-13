@@ -29,9 +29,16 @@ for csv in csv_name:
     plt.xlabel("Gate V")
     plt.ylabel("Drain I")
     plt.plot(gateV,drainI)
-    print(drainI)
     min_i = drainI.max()
     max_i = drainI.min()
     parameters.on_off_current_ratio(max_i,min_i)
     plt.show()
+    log_drain = np.log(drainI)
+    plt.plot(gateV,log_drain)
+    plt.show()
+    y=np.array(log_drain)
+    z=[]
+    for i in range(len(y)-1):
+        z.append(2*(y[i]-y[i-1]))
+    print(max(z)**-1) ## s.s
     
