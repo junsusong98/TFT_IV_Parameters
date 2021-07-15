@@ -53,16 +53,16 @@ folder_name = '20210715'
 # gate to gate                GateV    GateI
 # gate on, source to drain    GateV    DrainI
 
-# plot -> filename, foldername, Xaxisname, Yaxisname, log (Ture or False), title(graph name)
+# plot -> filename, foldername, Xaxisname, Yaxisname, log (Ture or False), title(graph name), arrow (True or False)
 
 # 함수 적으면 실행
 
-plot.plot(ss_name,folder_name,'DrainV','DrainI',False,'SourceToSource')
-plot.plot(sd_name,folder_name,'DrainV','DrainI',False,'SourceToDrain')
-plot.plot(gate_name,folder_name,'GateV','GateI',False,'GateToGate')
-plot.plot(sdg_name_,folder_name,'GateV','DrainI',False,'SourceToDrain,GateOn')
-plot.plot(refer_name,folder_name,'GateV','DrainI',True,'References_250_1')
-plot.plot(refer_2_name,folder_name,'GateV','DrainI',True,'References_250_2')
+plot.plot(ss_name,folder_name,'DrainV','DrainI',False,'SourceToSource',False)
+plot.plot(sd_name,folder_name,'DrainV','DrainI',False,'SourceToDrain',False)
+plot.plot(gate_name,folder_name,'GateV','GateI',False,'GateToGate',False)
+plot.plot(sdg_name_,folder_name,'GateV','DrainI',False,'SourceToDrain,GateOn',True)
+plot.plot(refer_name,folder_name,'GateV','DrainI',True,'References_250_1',True)
+plot.plot(refer_2_name,folder_name,'GateV','DrainI',True,'References_250_2',True)
     
     
 

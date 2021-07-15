@@ -8,7 +8,7 @@ from matplotlib import pyplot as plt
 from setup_files import parameters as parameters
 
 
-def plot(filename,foldername,Xaxisname,Yaxisname,log,title):
+def plot(filename,foldername,Xaxisname,Yaxisname,log,title,arrow):
 
     for filename in filename:
         ld = pd.read_csv('./setup_files/data/'+foldername +'/' + filename +'.CSV',engine='python',header=0)
@@ -32,7 +32,31 @@ def plot(filename,foldername,Xaxisname,Yaxisname,log,title):
         plt.ylabel(Yaxisname)
         if log == True:
             plt.yscale('log')
-        plt.plot(V,log_I,label=filename)
+
+        line = plt.plot(V,log_I,label=filename)[0]
+
+        # plot arrow on each line:
+        if arrow == True:
+            x = V
+            y = I
+
+            # calculate position and direction vectors:
+            x0 = x.iloc[range(len(x)-1)].values
+            x1 = x.iloc[range(1,len(x))].values
+            y0 = y.iloc[range(len(y)-1)].values
+            y1 = y.iloc[range(1,len(y))].values
+            xpos = (x0+x1)/2
+            ypos = (y0+y1)/2
+            xdir = x1-x0
+            ydir = y1-y0
+
+            for X,Y,dX,dY in zip(xpos, ypos, xdir, ydir):
+                plt.annotate("", xytext=(X,Y),xy=(X+0.001*dX,Y+0.001*dY), 
+                arrowprops=dict(arrowstyle="fancy",color=line.get_color()), size = 6)
+
+        else:
+            plt.scatter(V,log_I, s=6)
+
         y2=np.array(log_I)
         plt.legend()
         z2=[]
