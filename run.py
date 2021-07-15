@@ -1,44 +1,69 @@
-import csv as cv
-import pandas as pd
-import numpy as np
-from setup_files import parameters as parameters
-from matplotlib import pyplot as plt
+from setup_files import plot as plot
 
-csv_name = [
-    '200_1',
-    '200_20v_1',
-    '200_20v_2',
-    '250_1',
-    '250_2',
-    '250_3',
-    '250_20v',
-    '250_20v_2',
-    '300_1',
-    '300_2',
-    '300_20v_1',
-    'as depo_1',
-    'as depo_20v_1',
+# Plot할 csv들의 이름을 적어 주세요 (리스트별로 plot)
+
+ss_name = [
+    'GateVia.SS',
+    'GateVia2.SS',
+    'NoGateVia.SS',
 
             ]
-for csv in csv_name:
 
-    ld = pd.read_csv('./setup_files./data/' + csv +'.csv',engine='python',header=2)
-    gateV = pd.DataFrame(ld, columns=['Gate Vg (V)'])
-    drainI = pd.DataFrame(ld, columns=['Drain Id (A)'])
-    plt.title(csv,fontsize=25)
-    plt.xlabel("Gate V")
-    plt.ylabel("Drain I")
-    plt.plot(gateV,drainI)
-    min_i = drainI.max()
-    max_i = drainI.min()
-    parameters.on_off_current_ratio(max_i,min_i)
-    plt.show()
-    log_drain = np.log(drainI)
-    plt.plot(gateV,log_drain)
-    plt.show()
-    y=np.array(log_drain)
-    z=[]
-    for i in range(len(y)-1):
-        z.append(2*(y[i]-y[i-1]))
-    print(max(z)**-1) ## s.s
+sd_name = [
+    'GateVia2.SD',
+    'GateVia2.SD_10Gate',
+    'GateVia2.SD_20Gate',
+]
+
+gate_name = [
+    'GateVia2.Gate',
+    'NoGateVia.Gate',
+]
+
+sdg_name_ = [
+    'GateVia.-20to20',
+    'NoGateVia.-20to20',
+    'GateVia2.-20to20'
+
+]
+
+refer_name = [
+    'ITZO2_FMM_250_40.1',
+    'ITZO2_FMM_250_40.2',
+    'ITZO2_FMM_250_40',
+]
+
+refer_2_name = [
+    'ITZO_FMM_250_40',
+    'ITZO_FMM_250_40.1'
+]
+
+itzo_name = [
+    'GateVia.ITZOvoltagesweep',
+]
+
+# plot할 csv가 들어가 있는 폴더를 적어 주세요
+
+folder_name = '20210715'
+
+#                             Xaxis    Yaxis
+#                            -----------------
+# source to source            DrainV   DrainI
+# source to drain             DrainV   DrainI
+# gate to gate                GateV    GateI
+# gate on, source to drain    GateV    DrainI
+
+# plot -> filename, foldername, Xaxisname, Yaxisname, log (Ture or False), title(graph name)
+
+# 함수 적으면 실행
+
+plot.plot(ss_name,folder_name,'DrainV','DrainI',False,'SourceToSource')
+plot.plot(sd_name,folder_name,'DrainV','DrainI',False,'SourceToDrain')
+plot.plot(gate_name,folder_name,'GateV','GateI',False,'GateToGate')
+plot.plot(sdg_name_,folder_name,'GateV','DrainI',False,'SourceToDrain,GateOn')
+plot.plot(refer_name,folder_name,'GateV','DrainI',True,'References_250_1')
+plot.plot(refer_2_name,folder_name,'GateV','DrainI',True,'References_250_2')
+    
+    
+
     

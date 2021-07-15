@@ -26,7 +26,7 @@ def saturation_mobility(Vgs,Vth,i):
 
 def on_off_current_ratio(on,off):
     on_off_current_ratio = on / off
-    print(float(on_off_current_ratio))
+    print('on_off_ratio:' , float(on_off_current_ratio))
     return  on_off_current_ratio
 
 def threshold_volatge():
