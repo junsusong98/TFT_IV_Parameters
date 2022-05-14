@@ -20,12 +20,10 @@ from setup_files import plot as plot
 #     'NoGateVia.Gate',
 # ]
 #
-sdg_name_ = [
-    '1_1_50_20',
-    '1_1_100_20',
-    '1_1_150_20',
-    '1_1_500_20'
-    ]
+sdg_name = [
+    '2'
+
+]
 #
 # refer_name = [
 #     'ITZO2_FMM_250_40.1',
@@ -44,7 +42,7 @@ sdg_name_ = [
 
 # plot할 csv가 들어가 있는 폴더를 적어 주세요
 
-folder_name = 'ASDL_211116_ITZOTFT(Iso)'
+folder_name = ''
 
 #                             Xaxis    Yaxis
 #                            -----------------
@@ -60,7 +58,7 @@ folder_name = 'ASDL_211116_ITZOTFT(Iso)'
 # plot.plot(ss_name,folder_name,'DrainV','DrainI',False,'SourceToSource',False)
 # plot.plot(sd_name,folder_name,'DrainV','DrainI',False,'SourceToDrain',False)
 # plot.plot(gate_name,folder_name,'GateV','GateI',False,'GateToGate',False)
-plot.plot(sdg_name_,folder_name,'GateV','DrainI',True,'200ºC_20(L)',True)
-# plot.plot2(sdg_name_,folder_name,'GateV','DrainI','GateI',False,'5_100_50',False)
+plot.plot(sdg_name,folder_name,'GateV','DrainI',True,'k',True)
+# plot.plot3(sdg_name,folder_name,'GateV','DrainI','GateI',True,'5_100_50',True)
 # plot.plot(refer_name,folder_name,'GateV','DrainI',True,'References_250_1',True)
 # plot.plot(refer_2_name,folder_name,'GateV','DrainI',True,'References_250_2',True)
